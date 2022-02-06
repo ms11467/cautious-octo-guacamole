@@ -4,6 +4,7 @@
 
 
 def welcome_assignment_answers(question):
+  answer = " "  
   if question == "In Slack, what is the secret passphrase posted in the #lab-python-getting-started channel posted by a TA?:":
    answer = "mtls"
   elif question == "Are encoding and encryption the same? - Yes/No:":
