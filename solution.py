@@ -49,7 +49,7 @@ def webServer(port=13331):
         connectionSocket.close()
         #Close client socket
         #Fill in start
-      serverSocket.close*()
+      serverSocket.close()
 
         #Fill in end
 
