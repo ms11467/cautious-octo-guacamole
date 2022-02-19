@@ -23,8 +23,8 @@ def webServer(port=13331):
             filename = message.split()[1]
 
             f = open(filename[1:])
-            outputdata = f.read  #Fill in start     #Fill in end
-            f.close()
+            outputdata = f.read()  #Fill in start     #Fill in end
+            #f.close()
             #Send one HTTP header line into socket.
             #Fill in start
             okMessage = 'HTTP/1.1 200 OK \r\n'
@@ -50,8 +50,8 @@ def webServer(port=13331):
     except (ConnectionResetError, BrokenPipeError):
       pass
 
-    serverSocket.close()
-    sys.exit()  # Terminate the program after sending the corresponding data
+  serverSocket.close()
+  sys.exit()  # Terminate the program after sending the corresponding data
 
 if __name__ == "__main__":
   webServer(13331)
