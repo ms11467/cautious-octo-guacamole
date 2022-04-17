@@ -51,6 +51,7 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
         icmpHeader = recPacket[20:28]
         icmpType, code, mychecksum, packedID, sequence = struct.unpack("bbHHh", icmpHeader)
         # Fetch the ICMP header from the IP packet
+        
         if type != 8 and packedID == ID:
             bytesInDouble = struct.calcsize("d")
             timeSent = struct.unpack("d", recPacket[28:28 + bytesInDouble])[0]
@@ -101,6 +102,7 @@ def doOnePing(destAddr, timeout):
     myID = os.getpid() & 0xFFFF  # Return the current process i
     sendOnePing(mySocket, destAddr, myID)
     delay = receiveOnePing(mySocket, myID, timeout, destAddr)
+
     mySocket.close()
     return delay
 
@@ -124,10 +126,11 @@ def ping(host, timeout=1):
     #You should have the values of delay for each ping here; fill in calculation for packet_min, packet_avg, packet_max, and stdev
     #vars = [str(round(packet_min, 8)), str(round(packet_avg, 8)), str(round(packet_max, 8)),str(round(stdev(stdev_var), 8))]
 
-    return vars
-#    return delay
+#    return vars
+    return delay
 
+ping("google.co.il")
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
 #    ping("google.co.il")
-    ping("127.0.0.1")
+#    ping("127.0.0.1")
