@@ -46,14 +46,17 @@ def build_packet():
     # Make the header in a similar way to the ping exercise.
     bpChecksum = 0
     bpID = os.getpid() & 0xFFFF
-    # Append checksum to the header.
     header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, bpChecksum, bpID, 1)
     data = struct.pack("d", time.time())
+
+    # Append checksum to the header.
+    bpChecksum = checksum(header + data)
+    
     # Don’t send the packet yet , just return the final packet in this function.
     #Fill in end
 
     # So the function ending should look like this
-
+    
     packet = header + data
     return packet
 
@@ -108,8 +111,7 @@ def get_route(hostname):
 
                 if types == 11:
                     bytes = struct.calcsize("d")
-                    timeSent = struct.unpack("d", recvPacket[28:28 +
-                    bytes])[0]
+                    timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     #You should add your responses to your lists here
                     #Fill in end
