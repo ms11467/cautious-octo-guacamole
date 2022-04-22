@@ -1,4 +1,3 @@
-from email import header
 from socket import *
 import os
 import sys
