@@ -5,6 +5,7 @@ import struct
 import time
 import select
 import binascii
+import socket
 
 ICMP_ECHO_REQUEST = 8
 MAX_HOPS = 30
@@ -70,12 +71,12 @@ def get_route(hostname):
             destAddr = gethostbyname(hostname)
 
             #Fill in start
-            icmp = socket.getsockopt("icmp")
+            icmp = socket.getprotobyname("icmp")
             # Make a raw socket named mySocket
             mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
             #Fill in end
 
-            mySocket.setsockopt(IPPROTO_IP, IP_TTL, struct.pack('I', ttl))
+            mySocket.setsockopt(IPPROTO_IP, socket.IP_TTL, struct.pack('I', ttl))
             mySocket.settimeout(TIMEOUT)
             try:
                 d = build_packet()
@@ -136,7 +137,7 @@ def get_route(hostname):
                 else:
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
-                    print("error")
+                    print ("error")
                     #Fill in end
                 break
             finally:
