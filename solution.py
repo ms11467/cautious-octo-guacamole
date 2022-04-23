@@ -97,7 +97,7 @@ def get_route(hostname):
                     #Fill in start
                     print ("*    *    * Request timed out.")
                     #You should add the list above to your all traces list
-                    #tracelist2.append(tracelist1)
+                    tracelist2.append(tracelist1)
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 #print(addr)
@@ -108,7 +108,7 @@ def get_route(hostname):
                     #Fill in start
                     print ("*    *    * Request timed out.")
                     #You should add the list above to your all traces list
-                    #tracelist2.append(tracelist1)
+                    tracelist2.append(tracelist1)
                     #Fill in end
             except timeout:
                 continue
@@ -133,7 +133,7 @@ def get_route(hostname):
                     #tracelist1.append("host not returnable")
                     #continue
                     #Fill in end
-
+                tracelist1 = []
                 if types == 11:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
@@ -168,17 +168,18 @@ def get_route(hostname):
                     tracelist1.append(hostname)
                     tracelist2.append(tracelist1)
                     if addr[0] == destAddrr: 
-                        #print ("addr[0]: ", addr[0], "destAddress: ", destAddrr)
-                        #print ("tracelist2: \n", tracelist2)
+                        print ("addr[0]: ", addr[0], "destAddress: ", destAddrr)
+                        print ("tracelist2: \n", tracelist2)
                         print ("Host IP Test Passed!")
+                        print ("tracelist1: \n", tracelist1)
                         return tracelist2
                     #print (" %d rtt=%.0f ms %s" % (ttl,(timeReceived -t) * 1000, addr[0]))
                     #Fill in end
                 else:
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
-                    #tracelist1.append("error")
-                    #tracelist2.append("error")
+                    tracelist1.append("error")
+                    tracelist2.append("error")
                     print ("hostname not returnable")
                     #Fill in end
                 break
