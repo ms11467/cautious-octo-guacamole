@@ -1,4 +1,3 @@
-from inspect import trace
 from socket import *
 import os
 import sys
@@ -7,6 +6,7 @@ import time
 import select
 import binascii
 import socket
+import math
 
 ICMP_ECHO_REQUEST = 8
 MAX_HOPS = 30
@@ -90,7 +90,7 @@ def get_route(hostname):
                 whatReady = select.select([mySocket], [], [], timeLeft)
                 howLongInSelect = (time.time() - startedSelect)
                 if whatReady[0] == []: # Timeout
-                    tracelist1.append("* * * Request timed out.")
+                    tracelist1.append("*        *        *     Request timed out.")
                     #Fill in start
                     #You should add the list above to your all traces list
                     tracelist2.append(tracelist1)
@@ -100,7 +100,7 @@ def get_route(hostname):
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
                 if timeLeft <= 0:
-                    tracelist1.append("* * * Request timed out.")
+                    tracelist1.append("*        *        *     Request timed out.")
                     #Fill in start
                     #You should add the list above to your all traces list
                     tracelist2.append(tracelist1)
@@ -121,7 +121,7 @@ def get_route(hostname):
                 except herror:   #if the host does not provide a hostname
                     #Fill in start
                     tracelist1.append("host not returnable")
-                #    continue
+                    continue
                     #Fill in end
 
                 if types == 11:
@@ -182,4 +182,5 @@ get_route("sacoronavirus.co.za") # Africa  -   South Africa
 '''
 
 if __name__ == '__main__':
-    get_route("google.com")
+#    get_route("google.co.il")
+    get_route("bing.com")
