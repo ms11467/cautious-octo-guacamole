@@ -106,14 +106,14 @@ def get_route(hostname):
                 #Fill in start
                 #Fetch the icmp type from the IP packet
                 icmpHeader = recvPacket[20:28]
-                request_type, code, checksum, packetID, sequence = struct.unpack("bbHHh", icmpHeader)
+                types, code, checksum, packetID, sequence = struct.unpack("bbHHh", icmpHeader)
                 #Fill in end
-                try:#try to fetch the hostname
+                #try:#try to fetch the hostname
                     #Fill in start
                     #Fill in end
-                except socket.timeout:   #if the host does not provide a hostname
+                #except socket.timeout:   #if the host does not provide a hostname
                     #Fill in start
-                    continue
+                #    continue
                     #Fill in end
 
                 if types == 11:
@@ -137,6 +137,7 @@ def get_route(hostname):
                 else:
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
+                    print("error")
                     #Fill in end
                 break
             finally:
@@ -164,5 +165,5 @@ print('++++++++++++++++++++++++++++++++++++++++++')
 get_route("sacoronavirus.co.za") # Africa  -   South Africa
 '''
 
-#if __name__ == '__main__':
-#    get_route("google.co.il")
+if __name__ == '__main__':
+    get_route("www.google.com")
