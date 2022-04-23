@@ -70,7 +70,6 @@ def get_route(hostname):
     tracelist1 = [] #This is your list to use when iterating through each trace 
     tracelist2 = [] #This is your list to contain all traces
     destAddr = gethostbyname(hostname) 
-    destAddrr = str(destAddr)       
     
     for ttl in range(1,MAX_HOPS):
         for tries in range(TRIES):
@@ -129,8 +128,8 @@ def get_route(hostname):
                     #Fill in end
                 except herror:   #if the host does not provide a hostname
                     #Fill in start
-                    print("hostname not returnable")
-                    #tracelist1.append("host not returnable")
+                    #print("hostname not returnable")
+                    tracelist1.append("host not returnable")
                     #continue
                     #Fill in end
                 tracelist1 = []
@@ -167,11 +166,11 @@ def get_route(hostname):
                     tracelist1.append(addr[0])
                     tracelist1.append(hostname)
                     tracelist2.append(tracelist1)
-                    if addr[0] == destAddrr: 
-                        print ("addr[0]: ", addr[0], "destAddress: ", destAddrr)
-                        print ("tracelist2: \n", tracelist2)
-                        print ("Host IP Test Passed!")
-                        print ("tracelist1: \n", tracelist1)
+                    if str(addr[0]) == str(destAddr): 
+                        #print ("addr[0]: ", addr[0], "destAddress: ", destAddr)
+                        #print ("tracelist2: \n", tracelist2)
+                        #print ("Host IP Test Passed!")
+                        #print ("tracelist1: \n", tracelist1)
                         return tracelist2
                     #print (" %d rtt=%.0f ms %s" % (ttl,(timeReceived -t) * 1000, addr[0]))
                     #Fill in end
