@@ -69,7 +69,8 @@ def get_route(hostname):
     timeLeft = TIMEOUT
     tracelist1 = [] #This is your list to use when iterating through each trace 
     tracelist2 = [] #This is your list to contain all traces
-    destAddr = gethostbyname(hostname)        
+    destAddr = gethostbyname(hostname) 
+    destAddrr = str(destAddr)       
     
     for ttl in range(1,MAX_HOPS):
         for tries in range(TRIES):
@@ -132,7 +133,7 @@ def get_route(hostname):
                     #tracelist1.append("host not returnable")
                     #continue
                     #Fill in end
-                    tracelist1 = []
+
                 if types == 11:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
@@ -167,7 +168,7 @@ def get_route(hostname):
                     tracelist1.append(hostname)
                     tracelist2.append(tracelist1)
                     #if addr[0] == destAddr: 
-                    print ("addr[0]: ", addr[0], "destAddress: ", destAddr)
+                    print ("addr[0]: ", addr[0], "destAddress: ", destAddrr)
                     #print ("tracelist2: \n", tracelist2)
                     return tracelist2
                     #print (" %d rtt=%.0f ms %s" % (ttl,(timeReceived -t) * 1000, addr[0]))
