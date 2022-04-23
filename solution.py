@@ -1,4 +1,3 @@
-from msilib import sequence
 from socket import *
 import os
 import sys
@@ -71,7 +70,7 @@ def get_route(hostname):
             destAddr = gethostbyname(hostname)
 
             #Fill in start
-            icmp = socket.getprotobyname("icmp")
+            icmp = socket.getsockopt("icmp")
             # Make a raw socket named mySocket
             mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
             #Fill in end
@@ -166,4 +165,4 @@ get_route("sacoronavirus.co.za") # Africa  -   South Africa
 '''
 
 if __name__ == '__main__':
-    get_route("www.google.com")
+    get_route("google.com")
