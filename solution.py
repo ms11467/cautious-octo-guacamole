@@ -52,7 +52,10 @@ def build_packet():
 
     # Append checksum to the header.
     bpChecksum = checksum(header + data)
-    
+    if sys.platform == 'darwin':
+        bpChecksum = htons(bpChecksum) & 0xffff
+    else:
+        bpChecksum = htons(bpChecksum)
     # Don’t send the packet yet , just return the final packet in this function.
     #Fill in end
 
