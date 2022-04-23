@@ -78,6 +78,7 @@ def get_route(hostname):
             icmp = socket.getprotobyname("icmp")
             # Make a raw socket named mySocket
             mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
+            tracelist1 = []
             #Fill in end
 
             mySocket.setsockopt(IPPROTO_IP, socket.IP_TTL, struct.pack('I', ttl))
@@ -138,7 +139,6 @@ def get_route(hostname):
                     #Fill in start
                     print("Trace Results:  ['{0}', '{1}ms', '{2}', '{3}'] ".format(str(ttl), ((timeReceived -t) * 1000), str(addr[0]), str(hostname)))
                     #You should add your responses to your lists here
-                    tracelist1 = []
                     tracelist1.append(ttl)
                     tracelist1.append(addr[0])
                     tracelist1.append(hostname)
@@ -150,7 +150,6 @@ def get_route(hostname):
                     #Fill in start
                     print("Trace Results:  ['{0}', '{1}ms', '{2}', '{3}'] ".format(str(ttl), ((timeReceived -t) * 1000), str(addr[0]), str(hostname)))
                     #You should add your responses to your lists here 
-                    tracelist1 = []
                     tracelist1.append(ttl)
                     tracelist1.append(addr[0])
                     tracelist1.append(hostname)
@@ -163,7 +162,6 @@ def get_route(hostname):
                     #Fill in start
                     print("Trace Results:  ['{0}', '{1}ms', '{2}', '{3}'] ".format(str(ttl), ((timeReceived -t) * 1000), str(addr[0]), str(hostname)))
                     #You should add your responses to your lists here and return your list if your destination IP is met
-                    tracelist1 = []
                     tracelist1.append(ttl)
                     tracelist1.append(addr[0])
                     tracelist1.append(hostname)
