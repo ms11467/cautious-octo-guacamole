@@ -69,10 +69,10 @@ def get_route(hostname):
     timeLeft = TIMEOUT
     tracelist1 = [] #This is your list to use when iterating through each trace 
     tracelist2 = [] #This is your list to contain all traces
-        
+    destAddr = gethostbyname(hostname)        
+    
     for ttl in range(1,MAX_HOPS):
         for tries in range(TRIES):
-            destAddr = gethostbyname(str(hostname))
 
             #Fill in start
             icmp = socket.getprotobyname("icmp")
@@ -167,7 +167,8 @@ def get_route(hostname):
                     tracelist1.append(hostname)
                     tracelist2.append(tracelist1)
                     #if addr[0] == destAddr: 
-                    print ("tracelist2: \n", tracelist2)
+                    print ("addr[0]: ", addr[0], "destAddress: ", destAddr)
+                    #print ("tracelist2: \n", tracelist2)
                     return tracelist2
                     #print (" %d rtt=%.0f ms %s" % (ttl,(timeReceived -t) * 1000, addr[0]))
                     #Fill in end
