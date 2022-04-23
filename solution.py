@@ -1,3 +1,4 @@
+from msilib import sequence
 from socket import *
 import os
 import sys
@@ -70,7 +71,9 @@ def get_route(hostname):
             destAddr = gethostbyname(hostname)
 
             #Fill in start
+            icmp = socket.getprotobyname("icmp")
             # Make a raw socket named mySocket
+            mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
             #Fill in end
 
             mySocket.setsockopt(IPPROTO_IP, IP_TTL, struct.pack('I', ttl))
@@ -88,6 +91,7 @@ def get_route(hostname):
                     #You should add the list above to your all traces list
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
+                print(addr)
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
                 if timeLeft <= 0:
@@ -95,18 +99,21 @@ def get_route(hostname):
                     #Fill in start
                     #You should add the list above to your all traces list
                     #Fill in end
-            except timeout:
+            except socket.timeout:
                 continue
 
             else:
                 #Fill in start
                 #Fetch the icmp type from the IP packet
+                icmpHeader = recvPacket[20:28]
+                request_type, code, checksum, packetID, sequence = struct.unpack("bbHHh", icmpHeader)
                 #Fill in end
-                try: #try to fetch the hostname
+                try:#try to fetch the hostname
                     #Fill in start
                     #Fill in end
-                except herror:   #if the host does not provide a hostname
+                except socket.timeout:   #if the host does not provide a hostname
                     #Fill in start
+                    continue
                     #Fill in end
 
                 if types == 11:
@@ -134,6 +141,28 @@ def get_route(hostname):
                 break
             finally:
                 mySocket.close()
+'''
+print('++++++++++++++++++++++++++++++++++++++++++')
+print('google.com')
+print('++++++++++++++++++++++++++++++++++++++++++')
+get_route("www.google.com") # USA - NA
+print('++++++++++++++++++++++++++++++++++++++++++')
+print('war.ukraine.ua')     
+print('++++++++++++++++++++++++++++++++++++++++++')
+get_route("war.ukraine.ua") # Ukraine   -   Warzone
+print('++++++++++++++++++++++++++++++++++++++++++')
+print('www.amamzon.in')          
+print('++++++++++++++++++++++++++++++++++++++++++')
+get_route("www.amazon.in") # India   -   Asia
+print('++++++++++++++++++++++++++++++++++++++++++')
+print('amamzon.co.uk')          
+print('++++++++++++++++++++++++++++++++++++++++++')
+get_route("amazon.co.uk") # UK      -   Europe
+print('++++++++++++++++++++++++++++++++++++++++++')
+print('sacoronavirus.co.za')          
+print('++++++++++++++++++++++++++++++++++++++++++')
+get_route("sacoronavirus.co.za") # Africa  -   South Africa
+'''
 
-if __name__ == '__main__':
-    get_route("google.co.il")
+#if __name__ == '__main__':
+#    get_route("google.co.il")
