@@ -133,6 +133,7 @@ def get_route(hostname):
                     tracelist1.insert(-1, str(int((timeReceived -t) * 1000)) + "ms")
                     tracelist1.insert(-1, addr[0])
                     tracelist2.append(tracelist1)
+                    print (" %d rtt=%.0f ms %s" % (ttl,(timeReceived -t) * 1000, addr[0]))
                     #Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
@@ -140,6 +141,7 @@ def get_route(hostname):
                     #Fill in start
                     #You should add your responses to your lists here 
                     tracelist1.insert(-1, str(int((timeReceived -t) * 1000)) + "ms")
+                    print (" %d rtt=%.0f ms %s" % (ttl,(timeReceived -t) * 1000, addr[0]))
                     #Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
@@ -149,12 +151,14 @@ def get_route(hostname):
                     tracelist1.insert(-1, str(int((timeReceived -t) * 1000)) + "ms")
                     tracelist1.insert(-1, addr[0])
                     tracelist2.append(tracelist1)
+                    print (" %d rtt=%.0f ms %s" % (ttl,(timeReceived -t) * 1000, addr[0]))
                     #Fill in end
                 else:
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
                     tracelist1.append("error")
                     tracelist2.append("error")
+                    print ("error")
                     #Fill in end
                 break
             finally:
