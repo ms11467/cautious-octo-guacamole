@@ -61,7 +61,7 @@ def build_packet():
     #Fill in end
 
     # So the function ending should look like this
-    
+    header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, bpChecksum, bpID, 1)
     packet = header + data
     return packet
 
@@ -82,7 +82,7 @@ def get_route(hostname):
 
             mySocket.setsockopt(IPPROTO_IP, socket.IP_TTL, struct.pack('I', ttl))
             mySocket.settimeout(TIMEOUT)
-            print('myTraceRoute to (' + hostname + '), ' + str(MAX_HOPS) + ' hops max.' + ' time out ' + str(TIMEOUT))
+            #print('myTraceRoute to (' + hostname + '), ' + str(MAX_HOPS) + ' hops max.' + ' time out ' + str(TIMEOUT))
             try:
                 d = build_packet()
                 mySocket.sendto(d, (hostname, 0))
@@ -203,5 +203,5 @@ get_route("sacoronavirus.co.za") # Africa  -   South Africa
 '''
 
 if __name__ == '__main__':
-#    get_route("google.co.il")
-    get_route("bing.com")
+    get_route("google.co.il")
+#    get_route("bing.com")
