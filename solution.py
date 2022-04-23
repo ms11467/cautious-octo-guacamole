@@ -1,3 +1,4 @@
+from inspect import trace
 from socket import *
 import os
 import sys
@@ -92,6 +93,7 @@ def get_route(hostname):
                     tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     #You should add the list above to your all traces list
+                    tracelist2.append(tracelist1)
                     #Fill in end
                 recvPacket, addr = mySocket.recvfrom(1024)
                 print(addr)
@@ -101,8 +103,9 @@ def get_route(hostname):
                     tracelist1.append("* * * Request timed out.")
                     #Fill in start
                     #You should add the list above to your all traces list
+                    tracelist2.append(tracelist1)
                     #Fill in end
-            except socket.timeout:
+            except timeout:
                 continue
 
             else:
@@ -111,11 +114,13 @@ def get_route(hostname):
                 icmpHeader = recvPacket[20:28]
                 types, code, checksum, packetID, sequence = struct.unpack("bbHHh", icmpHeader)
                 #Fill in end
-                #try:#try to fetch the hostname
+                try:#try to fetch the hostname
                     #Fill in start
+                    tracelist1.append(gethostbyaddr(str(addr[0]))[0])
                     #Fill in end
-                #except socket.timeout:   #if the host does not provide a hostname
+                except herror:   #if the host does not provide a hostname
                     #Fill in start
+                    tracelist1.append("host not returnable")
                 #    continue
                     #Fill in end
 
