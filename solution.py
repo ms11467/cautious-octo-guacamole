@@ -77,8 +77,9 @@ def get_route(hostname):
             #Fill in start
             icmp = socket.getprotobyname("icmp")
             # Make a raw socket named mySocket
-            mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
-            
+            #mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
+            mySocket = socket.socket(AF_INET, SOCK_RAW, icmp)
+
             #Fill in end
 
             mySocket.setsockopt(IPPROTO_IP, socket.IP_TTL, struct.pack('I', ttl))
@@ -103,9 +104,9 @@ def get_route(hostname):
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
                 if timeLeft <= 0:
-                    #tracelist1.append("* * * Request timed out.")
+                    tracelist1.append("* * * Request timed out.")
                     #Fill in start
-                    print ("*    *    * Request timed out.")
+                    #print ("*    *    * Request timed out.")
                     #You should add the list above to your all traces list
                     tracelist2.append(tracelist1)
                     #Fill in end
@@ -132,7 +133,7 @@ def get_route(hostname):
                     tracelist1.append("host not returnable")
                     #continue
                     #Fill in end
-                tracelist1 = []
+
                 if types == 11:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
@@ -173,6 +174,7 @@ def get_route(hostname):
                         #print ("tracelist1: \n", tracelist1)
                     #print (" %d rtt=%.0f ms %s" % (ttl,(timeReceived -t) * 1000, addr[0]))
                     #Fill in end
+                    return(tracelist2)
                 else:
                     #Fill in start
                     #If there is an exception/error to your if statements, you should append that to your list here
@@ -183,7 +185,6 @@ def get_route(hostname):
                 break
             finally:
                 mySocket.close()
-    return(tracelist2)
 '''
 print('++++++++++++++++++++++++++++++++++++++++++')
 print('google.com')
