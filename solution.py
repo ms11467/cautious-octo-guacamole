@@ -75,6 +75,7 @@ def get_route(hostname):
         for tries in range(TRIES):
 
             #Fill in start
+            #destAddr = gethostbyname(hostname) 
             icmp = socket.getprotobyname("icmp")
             # Make a raw socket named mySocket
             #mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)
@@ -94,6 +95,9 @@ def get_route(hostname):
                 howLongInSelect = (time.time() - startedSelect)
                 if whatReady[0] == []: # Timeout
                     #tracelist1.append("* * * Request timed out.")
+                    tracelist1.append(f'{ttl}')
+                    tracelist1.append('*')
+                    tracelist1.append('Request timed out.')
                     #Fill in start
                     print ("*    *    * Request timed out.")
                     #You should add the list above to your all traces list
@@ -104,7 +108,10 @@ def get_route(hostname):
                 timeReceived = time.time()
                 timeLeft = timeLeft - howLongInSelect
                 if timeLeft <= 0:
-                    tracelist1.append("* * * Request timed out.")
+                    #tracelist1.append("* * * Request timed out.")
+                    tracelist1.append(f'{ttl}')
+                    tracelist1.append('*')
+                    tracelist1.append('Request timed out.')
                     #Fill in start
                     #print ("*    *    * Request timed out.")
                     #You should add the list above to your all traces list
@@ -175,7 +182,7 @@ def get_route(hostname):
                     #if str(addr[0]) == str(destAddr): 
                         #print ("addr[0]: ", addr[0], "destAddress: ", destAddr)
                     #print ("tracelist2: \n", tracelist2)
-                    print ("Host IP Test Passed!")
+                    #print ("Host IP Test Passed!")
                         #print ("tracelist1: \n", tracelist1)
                     #print (" %d rtt=%.0f ms %s" % (ttl,(timeReceived -t) * 1000, addr[0]))
                     #Fill in end
