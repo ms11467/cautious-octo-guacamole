@@ -143,7 +143,7 @@ def get_route(hostname):
                     #Fill in start
                     print("['{0}', '{1}ms', '{2}', '{3}'] ".format(ttl, ((timeReceived -t) * 1000), addr[0], hostname))
                     #You should add your responses to your lists here
-                    tracelist1.append(ttl)
+                    tracelist1.append(f'{ttl}')
                     tracelist1.append("%.0fms" %((timeReceived - t) * 1000))
                     tracelist1.append(addr[0])
                     tracelist1.append(myVar1)
@@ -155,7 +155,7 @@ def get_route(hostname):
                     #Fill in start
                     print("['{0}', '{1}ms', '{2}', '{3}'] ".format(ttl, ((timeReceived -t) * 1000), addr[0], hostname))
                     #You should add your responses to your lists here 
-                    tracelist1.append(ttl)
+                    tracelist1.append(f'{ttl}')
                     tracelist1.append(addr[0])
                     tracelist1.append(myVar1)
                     tracelist2.append(tracelist1)
@@ -167,14 +167,14 @@ def get_route(hostname):
                     #Fill in start
                     print("['{0}', '{1}ms', '{2}', '{3}'] ".format(ttl, ((timeReceived -t) * 1000), addr[0], hostname))
                     #You should add your responses to your lists here and return your list if your destination IP is met
-                    tracelist1.append(ttl)
+                    tracelist1.append(f'{ttl}')
                     tracelist1.append("%.0fms" %((timeReceived - timeSent) * 1000))
                     tracelist1.append(addr[0])
                     tracelist1.append(myVar1)
                     tracelist2.append(tracelist1)
                     #if str(addr[0]) == str(destAddr): 
                         #print ("addr[0]: ", addr[0], "destAddress: ", destAddr)
-                    print ("tracelist2: \n", tracelist2)
+                    #print ("tracelist2: \n", tracelist2)
                     print ("Host IP Test Passed!")
                         #print ("tracelist1: \n", tracelist1)
                     #print (" %d rtt=%.0f ms %s" % (ttl,(timeReceived -t) * 1000, addr[0]))
