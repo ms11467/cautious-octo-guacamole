@@ -167,10 +167,10 @@ def get_route(hostname):
                     tracelist1.append(addr[0])
                     tracelist1.append(hostname)
                     tracelist2.append(tracelist1)
-                    if str(addr[0]) == str(destAddr): 
+                    #if str(addr[0]) == str(destAddr): 
                         #print ("addr[0]: ", addr[0], "destAddress: ", destAddr)
                         #print ("tracelist2: \n", tracelist2)
-                        print ("Host IP Test Passed!")
+                    print ("Host IP Test Passed!")
                         #print ("tracelist1: \n", tracelist1)
                     #print (" %d rtt=%.0f ms %s" % (ttl,(timeReceived -t) * 1000, addr[0]))
                     #Fill in end
